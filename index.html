@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>System Colors</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html {
+        color-scheme: light dark;
+        font-family: Roboto, Arial, sans-serif;
+      }
+      body,
+      html,
+      .colors {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .colors {
+        --grid-layout-gap: 0px;
+        --grid-column-count: 5;
+        --grid-item--min-width: 10rem;
+        --gap-count: calc(var(--grid-column-count) - 1);
+        --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+        --grid-item--max-width: calc(
+          (100% - var(--total-gap-width)) / var(--grid-column-count)
+        );
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(
+            max(var(--grid-item--min-width), var(--grid-item--max-width)),
+            1fr
+          )
+        );
+        grid-gap: var(--grid-layout-gap);
+        overflow-y: auto;
+      }
+      .colors > li {
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        height: 25vh;
+        min-height: 6rem;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .contrasts {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        height: 15%;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .desc {
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 1vmin;
+        overflow-y: auto;
+        word-wrap: break-word;
+        border: none;
+        font: inherit;
+        appearance: none;
+        display: flex;
+      }
+      .contrasts button {
+        display: block;
+        flex-grow: 1;
+        appearance: none;
+        border: none;
+      }
+      .me {
+        color: #ff6be1;
+        background: currentColor;
+      }
+      .colors > .me > button {
+        padding: 1rem;
+        background: #1b0b19;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        font-family: monospace;
+        border: none;
+        appearance: none;
+        flex-grow: 1;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+      }
+      .me .text {
+        filter: drop-shadow(0 0 1px #ff6be133) drop-shadow(0 0 3px #ff6be166);
+      }
+      .text {
+        margin-bottom: 0.5em;
+      }
+      .desc,
+      .contrasts button,
+      .me button {
+        cursor: pointer;
+        user-select: none;
+        transition: 125ms transform ease-out;
+      }
+      .desc:active,
+      .me button:active {
+        transform: scale(0.95);
+      }
+      .contrasts button:active {
+        transform: scale(0.9);
+      }
+      .desc > div {
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        word-wrap: break-word;
+      }
+      .gui-toast-group {
+        position: fixed;
+        z-index: 1;
+        inset-block-end: 0;
+        inset-inline: 0;
+        -webkit-padding-after: 5vh;
+        padding-block-end: 5vh;
+        display: grid;
+        justify-items: center;
+        justify-content: center;
+        gap: 1vh;
+        pointer-events: none;
+      }
+      .gui-toast {
+        --_duration: 3s;
+        --_bg-lightness: 90%;
+        --_travel-distance: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, sans-serif;
+        color: #000;
+        background: hsl(0 0% var(--_bg-lightness) / 90%);
+        max-inline-size: min(25ch, 90vw);
+        padding-block: 0.5ch;
+        padding-inline: 1ch;
+        border-radius: 3px;
+        font-size: 1rem;
+        will-change: transform;
+        -webkit-animation: fade-in 0.3s ease, slide-in 0.3s ease,
+          fade-out 0.3s ease var(--_duration);
+        animation: fade-in 0.3s ease, slide-in 0.3s ease,
+          fade-out 0.3s ease var(--_duration);
+      }
+      @media (prefers-color-scheme: dark) {
+        .gui-toast {
+          color: #fff;
+          --_bg-lightness: 20%;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .gui-toast {
+          --_travel-distance: 5vh;
+        }
+      }
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+      }
+      @keyframes fade-out {
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes slide-in {
+        0% {
+          transform: translateY(var(--_travel-distance, 10px));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>no js 😔</noscript>
+    <script type="module">var e,t,n,o,r,_,l={},i=[],c=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function s(e,t){for(var n in t)e[n]=t[n];return e}function u(e){var t=e.parentNode;t&&t.removeChild(e)}function a(t,n,o){var r,_,l,i={};for(l in n)"key"==l?r=n[l]:"ref"==l?_=n[l]:i[l]=n[l];if(arguments.length>2&&(i.children=arguments.length>3?e.call(arguments,2):o),"function"==typeof t&&null!=t.defaultProps)for(l in t.defaultProps)void 0===i[l]&&(i[l]=t.defaultProps[l]);return d(t,i,r,_,null)}function d(e,o,r,_,l){var i={type:e,props:o,key:r,ref:_,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:l??++n};return null==l&&null!=t.vnode&&t.vnode(i),i}function f(e){return e.children}function p(e,t){this.props=e,this.context=t}function h(e,t){if(null==t)return e.__?h(e.__,e.__.__k.indexOf(e)+1):null;for(var n;t<e.__k.length;t++)if(null!=(n=e.__k[t])&&null!=n.__e)return n.__e;return"function"==typeof e.type?h(e):null}function v(e){var t,n;if(null!=(e=e.__)&&null!=e.__c){for(e.__e=e.__c.base=null,t=0;t<e.__k.length;t++)if(null!=(n=e.__k[t])&&null!=n.__e){e.__e=e.__c.base=n.__e;break}return v(e)}}function y(e){(!e.__d&&(e.__d=!0)&&o.push(e)&&!m.__r++||r!==t.debounceRendering)&&((r=t.debounceRendering)||_)(m)}function m(){var e,t,n,r,_,l,i,c;for(o.sort((function(e,t){return e.__v.__b-t.__v.__b}));e=o.shift();)e.__d&&(t=o.length,r=void 0,_=void 0,i=(l=(n=e).__v).__e,(c=n.__P)&&(r=[],(_=s({},l)).__v=l.__v+1,F(c,l,_,n.__n,void 0!==c.ownerSVGElement,null!=l.__h?[i]:null,r,i??h(l),l.__h),B(r,l),l.__e!=i&&v(l)),o.length>t&&o.sort((function(e,t){return e.__v.__b-t.__v.__b})));m.__r=0}function g(e,t,n,o,r,_,c,s,u,a){var p,v,y,m,g,T,C,w=o&&o.__k||i,H=w.length;for(n.__k=[],p=0;p<t.length;p++)if(null!=(m=n.__k[p]=null==(m=t[p])||"boolean"==typeof m?null:"string"==typeof m||"number"==typeof m||"bigint"==typeof m?d(null,m,null,null,m):Array.isArray(m)?d(f,{children:m},null,null,null):m.__b>0?d(m.type,m.props,m.key,m.ref?m.ref:null,m.__v):m)){if(m.__=n,m.__b=n.__b+1,null===(y=w[p])||y&&m.key==y.key&&m.type===y.type)w[p]=void 0;else for(v=0;v<H;v++){if((y=w[v])&&m.key==y.key&&m.type===y.type){w[v]=void 0;break}y=null}F(e,m,y=y||l,r,_,c,s,u,a),g=m.__e,(v=m.ref)&&y.ref!=v&&(C||(C=[]),y.ref&&C.push(y.ref,null,m),C.push(v,m.__c||g,m)),null!=g?(null==T&&(T=g),"function"==typeof m.type&&m.__k===y.__k?m.__d=u=b(m,u,e):u=k(e,m,y,w,g,u),"function"==typeof n.type&&(n.__d=u)):u&&y.__e==u&&u.parentNode!=e&&(u=h(y))}for(n.__e=T,p=H;p--;)null!=w[p]&&("function"==typeof n.type&&null!=w[p].__e&&w[p].__e==n.__d&&(n.__d=x(o).nextSibling),S(w[p],w[p]));if(C)for(p=0;p<C.length;p++)A(C[p],C[++p],C[++p])}function b(e,t,n){for(var o,r=e.__k,_=0;r&&_<r.length;_++)(o=r[_])&&(o.__=e,t="function"==typeof o.type?b(o,t,n):k(n,o,o,r,o.__e,t));return t}function k(e,t,n,o,r,_){var l,i,c;if(void 0!==t.__d)l=t.__d,t.__d=void 0;else if(null==n||r!=_||null==r.parentNode)e:if(null==_||_.parentNode!==e)e.appendChild(r),l=null;else{for(i=_,c=0;(i=i.nextSibling)&&c<o.length;c+=1)if(i==r)break e;e.insertBefore(r,_),l=_}return void 0!==l?l:r.nextSibling}function x(e){var t,n,o;if(null==e.type||"string"==typeof e.type)return e.__e;if(e.__k)for(t=e.__k.length-1;t>=0;t--)if((n=e.__k[t])&&(o=x(n)))return o;return null}function T(e,t,n){"-"===t[0]?e.setProperty(t,n??""):e[t]=null==n?"":"number"!=typeof n||c.test(t)?n:n+"px"}function C(e,t,n,o,r){var _;e:if("style"===t)if("string"==typeof n)e.style.cssText=n;else{if("string"==typeof o&&(e.style.cssText=o=""),o)for(t in o)n&&t in n||T(e.style,t,"");if(n)for(t in n)o&&n[t]===o[t]||T(e.style,t,n[t])}else if("o"===t[0]&&"n"===t[1])_=t!==(t=t.replace(/Capture$/,"")),t=t.toLowerCase()in e?t.toLowerCase().slice(2):t.slice(2),e.l||(e.l={}),e.l[t+_]=n,n?o||e.addEventListener(t,_?H:w,_):e.removeEventListener(t,_?H:w,_);else if("dangerouslySetInnerHTML"!==t){if(r)t=t.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!==t&&"height"!==t&&"href"!==t&&"list"!==t&&"form"!==t&&"tabIndex"!==t&&"download"!==t&&t in e)try{e[t]=n??"";break e}catch{}"function"==typeof n||(null==n||!1===n&&-1==t.indexOf("-")?e.removeAttribute(t):e.setAttribute(t,n))}}function w(e){return this.l[e.type+!1](t.event?t.event(e):e)}function H(e){return this.l[e.type+!0](t.event?t.event(e):e)}function F(n,o,r,_,i,c,a,d,v){var y,m,b,k,x,T,w,H,F,B,A,S,$,M,P,L=o.type;if(void 0!==o.constructor)return null;null!=r.__h&&(v=r.__h,d=o.__e=r.__e,o.__h=null,c=[d]),(y=t.__b)&&y(o);try{e:if("function"==typeof L){if(H=o.props,F=(y=L.contextType)&&_[y.__c],B=y?F?F.props.value:y.__:_,r.__c?w=(m=o.__c=r.__c).__=m.__E:("prototype"in L&&L.prototype.render?o.__c=m=new L(H,B):(o.__c=m=new p(H,B),m.constructor=L,m.render=E),F&&F.sub(m),m.props=H,m.state||(m.state={}),m.context=B,m.__n=_,b=m.__d=!0,m.__h=[],m._sb=[]),null==m.__s&&(m.__s=m.state),null!=L.getDerivedStateFromProps&&(m.__s==m.state&&(m.__s=s({},m.__s)),s(m.__s,L.getDerivedStateFromProps(H,m.__s))),k=m.props,x=m.state,m.__v=o,b)null==L.getDerivedStateFromProps&&null!=m.componentWillMount&&m.componentWillMount(),null!=m.componentDidMount&&m.__h.push(m.componentDidMount);else{if(null==L.getDerivedStateFromProps&&H!==k&&null!=m.componentWillReceiveProps&&m.componentWillReceiveProps(H,B),!m.__e&&null!=m.shouldComponentUpdate&&!1===m.shouldComponentUpdate(H,m.__s,B)||o.__v===r.__v){for(o.__v!==r.__v&&(m.props=H,m.state=m.__s,m.__d=!1),m.__e=!1,o.__e=r.__e,o.__k=r.__k,o.__k.forEach((function(e){e&&(e.__=o)})),A=0;A<m._sb.length;A++)m.__h.push(m._sb[A]);m._sb=[],m.__h.length&&a.push(m);break e}null!=m.componentWillUpdate&&m.componentWillUpdate(H,m.__s,B),null!=m.componentDidUpdate&&m.__h.push((function(){m.componentDidUpdate(k,x,T)}))}if(m.context=B,m.props=H,m.__P=n,S=t.__r,$=0,"prototype"in L&&L.prototype.render){for(m.state=m.__s,m.__d=!1,S&&S(o),y=m.render(m.props,m.state,m.context),M=0;M<m._sb.length;M++)m.__h.push(m._sb[M]);m._sb=[]}else do{m.__d=!1,S&&S(o),y=m.render(m.props,m.state,m.context),m.state=m.__s}while(m.__d&&++$<25);m.state=m.__s,null!=m.getChildContext&&(_=s(s({},_),m.getChildContext())),b||null==m.getSnapshotBeforeUpdate||(T=m.getSnapshotBeforeUpdate(k,x)),P=null!=y&&y.type===f&&null==y.key?y.props.children:y,g(n,Array.isArray(P)?P:[P],o,r,_,i,c,a,d,v),m.base=o.__e,o.__h=null,m.__h.length&&a.push(m),w&&(m.__E=m.__=null),m.__e=!1}else null==c&&o.__v===r.__v?(o.__k=r.__k,o.__e=r.__e):o.__e=function(t,n,o,r,_,i,c,s){var a,d,f,p=o.props,v=n.props,y=n.type,m=0;if("svg"===y&&(_=!0),null!=i)for(;m<i.length;m++)if((a=i[m])&&"setAttribute"in a==!!y&&(y?a.localName===y:3===a.nodeType)){t=a,i[m]=null;break}if(null==t){if(null===y)return document.createTextNode(v);t=_?document.createElementNS("http://www.w3.org/2000/svg",y):document.createElement(y,v.is&&v),i=null,s=!1}if(null===y)p===v||s&&t.data===v||(t.data=v);else{if(i=i&&e.call(t.childNodes),d=(p=o.props||l).dangerouslySetInnerHTML,f=v.dangerouslySetInnerHTML,!s){if(null!=i)for(p={},m=0;m<t.attributes.length;m++)p[t.attributes[m].name]=t.attributes[m].value;(f||d)&&(f&&(d&&f.__html==d.__html||f.__html===t.innerHTML)||(t.innerHTML=f&&f.__html||""))}if(function(e,t,n,o,r){var _;for(_ in n)"children"===_||"key"===_||_ in t||C(e,_,null,n[_],o);for(_ in t)r&&"function"!=typeof t[_]||"children"===_||"key"===_||"value"===_||"checked"===_||n[_]===t[_]||C(e,_,t[_],n[_],o)}(t,v,p,_,s),f)n.__k=[];else if(m=n.props.children,g(t,Array.isArray(m)?m:[m],n,o,r,_&&"foreignObject"!==y,i,c,i?i[0]:o.__k&&h(o,0),s),null!=i)for(m=i.length;m--;)null!=i[m]&&u(i[m]);s||("value"in v&&void 0!==(m=v.value)&&(m!==t.value||"progress"===y&&!m||"option"===y&&m!==p.value)&&C(t,"value",m,p.value,!1),"checked"in v&&void 0!==(m=v.checked)&&m!==t.checked&&C(t,"checked",m,p.checked,!1))}return t}(r.__e,o,r,_,i,c,a,v);(y=t.diffed)&&y(o)}catch(e){o.__v=null,(v||null!=c)&&(o.__e=d,o.__h=!!v,c[c.indexOf(d)]=null),t.__e(e,o,r)}}function B(e,n){t.__c&&t.__c(n,e),e.some((function(n){try{e=n.__h,n.__h=[],e.some((function(e){e.call(n)}))}catch(e){t.__e(e,n.__v)}}))}function A(e,n,o){try{"function"==typeof e?e(n):e.current=n}catch(e){t.__e(e,o)}}function S(e,n,o){var r,_;if(t.unmount&&t.unmount(e),(r=e.ref)&&(r.current&&r.current!==e.__e||A(r,null,n)),null!=(r=e.__c)){if(r.componentWillUnmount)try{r.componentWillUnmount()}catch(e){t.__e(e,n)}r.base=r.__P=null,e.__c=void 0}if(r=e.__k)for(_=0;_<r.length;_++)r[_]&&S(r[_],n,o||"function"!=typeof e.type);o||null==e.__e||u(e.__e),e.__=e.__e=e.__d=void 0}function E(e,t,n){return this.constructor(e,n)}e=i.slice,t={__e:function(e,t,n,o){for(var r,_,l;t=t.__;)if((r=t.__c)&&!r.__)try{if((_=r.constructor)&&null!=_.getDerivedStateFromError&&(r.setState(_.getDerivedStateFromError(e)),l=r.__d),null!=r.componentDidCatch&&(r.componentDidCatch(e,o||{}),l=r.__d),l)return r.__E=r}catch(t){e=t}throw e}},n=0,p.prototype.setState=function(e,t){var n;n=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=s({},this.state),"function"==typeof e&&(e=e(s({},n),this.props)),e&&s(n,e),null!=e&&this.__v&&(t&&this._sb.push(t),y(this))},p.prototype.forceUpdate=function(e){this.__v&&(this.__e=!0,e&&this.__h.push(e),y(this))},p.prototype.render=f,o=[],_="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,m.__r=0;var $,M,P,L=[],D=[],N=t.__b,G=t.__r,I=t.diffed,U=t.__c,V=t.unmount;function W(){for(var e;e=L.shift();)if(e.__P&&e.__H)try{e.__H.__h.forEach(q),e.__H.__h.forEach(R),e.__H.__h=[]}catch(n){e.__H.__h=[],t.__e(n,e.__v)}}t.__b=function(e){$=null,N&&N(e)},t.__r=function(e){G&&G(e);var t=($=e.__c).__H;t&&(M===$?(t.__h=[],$.__h=[],t.__.forEach((function(e){e.__N&&(e.__=e.__N),e.__V=D,e.__N=e.i=void 0}))):(t.__h.forEach(q),t.__h.forEach(R),t.__h=[])),M=$},t.diffed=function(e){I&&I(e);var n=e.__c;n&&n.__H&&(n.__H.__h.length&&(1!==L.push(n)&&P===t.requestAnimationFrame||((P=t.requestAnimationFrame)||j)(W)),n.__H.__.forEach((function(e){e.i&&(e.__H=e.i),e.__V!==D&&(e.__=e.__V),e.i=void 0,e.__V=D}))),M=$=null},t.__c=function(e,n){n.some((function(e){try{e.__h.forEach(q),e.__h=e.__h.filter((function(e){return!e.__||R(e)}))}catch(o){n.some((function(e){e.__h&&(e.__h=[])})),n=[],t.__e(o,e.__v)}})),U&&U(e,n)},t.unmount=function(e){V&&V(e);var n,o=e.__c;o&&o.__H&&(o.__H.__.forEach((function(e){try{q(e)}catch(e){n=e}})),o.__H=void 0,n&&t.__e(n,o.__v))};var O="function"==typeof requestAnimationFrame;function j(e){var t,n=function(){clearTimeout(o),O&&cancelAnimationFrame(t),setTimeout(e)},o=setTimeout(n,100);O&&(t=requestAnimationFrame(n))}function q(e){var t=$,n=e.__c;"function"==typeof n&&(e.__c=void 0,n()),$=t}function R(e){var t=$;e.__c=e.__(),$=t}var Y=function(e,t,n,o){var r;t[0]=0;for(var _=1;_<t.length;_++){var l=t[_++],i=t[_]?(t[0]|=l?1:2,n[t[_++]]):t[++_];3===l?o[0]=i:4===l?o[1]=Object.assign(o[1]||{},i):5===l?(o[1]=o[1]||{})[t[++_]]=i:6===l?o[1][t[++_]]+=i+"":l?(r=e.apply(i,Y(e,i,n,["",null])),o.push(r),i[0]?t[0]|=2:(t[_-2]=0,t[_]=r)):o.push(i)}return o},z=new Map;const J=document.createElement("div");const K={AccentColor:["AccentColorText","GrayText"],AccentColorText:["AccentColor"],ActiveText:["Canvas"],ButtonBorder:["Canvas","ButtonFace"],ButtonFace:["ButtonText","ButtonBorder","Canvas","Field","GrayText"],ButtonText:["ButtonFace"],Canvas:["CanvasText","ActiveText","ButtonBorder","ButtonFace","GrayText","LinkText","VisitedText"],CanvasText:["Canvas"],Field:["FieldText","ButtonFace","GrayText"],FieldText:["Field"],GrayText:["Canvas","AccentColor","ButtonFace","Field","Highlight","Mark","SelectedItem"],Highlight:["HighlightText","GrayText"],HighlightText:["Highlight"],LinkText:["Canvas"],Mark:["MarkText","GrayText"],MarkText:["Mark"],SelectedItem:["SelectedItemText","GrayText"],SelectedItemText:["SelectedItem"],VisitedText:["Canvas"]},Q=[{color:"Canvas",description:"Background of application content or documents."},{color:"CanvasText",description:"Text in application content or documents."},{color:"LinkText",description:"Text in non-active, non-visited links. For light backgrounds, traditionally blue."},{color:"VisitedText",description:"Text in visited links. For light backgrounds, traditionally purple."},{color:"ActiveText",description:"Text in active links. For light backgrounds, traditionally red."},{color:"ButtonFace",description:"The face background color for push buttons."},{color:"ButtonText",description:"Text on push buttons."},{color:"ButtonBorder",description:"The base border color for push buttons."},{color:"Field",description:"Background of input fields."},{color:"FieldText",description:"Text in input fields."},{color:"Highlight",description:"Background of selected text, for example from ::selection."},{color:"HighlightText",description:"Text of selected text."},{color:"SelectedItem",description:"Background of selected items, for example a selected checkbox."},{color:"SelectedItemText",description:"Text of selected items."},{color:"Mark",description:"Background of text that has been specially marked (such as by the HTML mark element)."},{color:"MarkText",description:"Text that has been specially marked (such as by the HTML mark element)."},{color:"GrayText",description:"Disabled text. (Often, but not necessarily, gray.)"},{color:"AccentColor",description:"Background of accented user interface controls."},{color:"AccentColorText",description:"Text of accented user interface controls."}].map((e=>{return{...e,supported:(t=e.color,J.style.color="var(--unsupported)",J.style.color=t,"var(--unsupported)"!==J.style.color)};var t})),X=e=>{let t=(e=>{const t=document.createElement("output");return t.innerText=e,t.classList.add("gui-toast"),t.setAttribute("role","status"),t.setAttribute("aria-live","polite"),t})(e);return(e=>{const{matches:t}=window.matchMedia("(prefers-reduced-motion: no-preference)");ee.children.length&&t?Z(e):ee.appendChild(e)})(t),new Promise((async(e,n)=>{await Promise.allSettled(t.getAnimations().map((e=>e.finished))),ee.removeChild(t),e()}))},Z=e=>{const t=ee.offsetHeight;ee.appendChild(e);const n=ee.offsetHeight-t;ee.animate([{transform:`translateY(${n}px)`},{transform:"translateY(0)"}],{duration:150,easing:"ease-out"}).startTime=document.timeline.currentTime},ee=(()=>{const e=document.createElement("section");return e.classList.add("gui-toast-group"),document.firstElementChild.insertBefore(e,document.body),e})(),te=function(e){var t=z.get(this);return t||(t=new Map,z.set(this,t)),(t=Y(this,t.get(e)||(t.set(e,t=function(e){for(var t,n,o=1,r="",_="",l=[0],i=function(e){1===o&&(e||(r=r.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?l.push(0,e,r):3===o&&(e||r)?(l.push(3,e,r),o=2):2===o&&"..."===r&&e?l.push(4,e,0):2===o&&r&&!e?l.push(5,0,!0,r):o>=5&&((r||!e&&5===o)&&(l.push(o,0,r,n),o=6),e&&(l.push(o,e,0,n),o=6)),r=""},c=0;c<e.length;c++){c&&(1===o&&i(),i(c));for(var s=0;s<e[c].length;s++)t=e[c][s],1===o?"<"===t?(i(),l=[l],o=3):r+=t:4===o?"--"===r&&">"===t?(o=1,r=""):r=t+r[0]:_?t===_?_="":r+=t:'"'===t||"'"===t?_=t:">"===t?(i(),o=1):o&&("="===t?(o=5,n=r,r=""):"/"===t&&(o<5||">"===e[c][s+1])?(i(),3===o&&(l=l[0]),o=l,(l=l[0]).push(2,0,o),o=0):" "===t||"\t"===t||"\n"===t||"\r"===t?(i(),o=2):r+=t),3===o&&"!--"===r&&(o=4,l=l[0])}return i(),l}(e)),t),arguments,[])).length>1?t:t[0]}.bind(a);const ne=e=>()=>async function(e){if(!navigator.clipboard){var t=document.createElement("textarea");t.value=e,t.style.top="0",t.style.left="0",t.style.position="fixed",document.body.appendChild(t),t.focus(),t.select();try{if(!document.execCommand("copy"))throw new Error}finally{document.body.removeChild(t)}}await navigator.clipboard.writeText(e)}(e).then((()=>X("copied "+e))).catch((()=>X("failed to copy "+e)));!function(n,o,r){var _,i,c;t.__&&t.__(n,o),i=(_="function"==typeof r)?null:r&&r.__k||o.__k,c=[],F(o,n=(!_&&r||o).__k=a(f,null,[n]),i||l,l,void 0!==o.ownerSVGElement,!_&&r?[r]:i?null:o.firstChild?e.call(o.childNodes):null,c,!_&&r?r:i?i.__e:o.firstChild,_),B(c,n)}(te`<${function(){return te` <ul class="colors"> ${Q.map((e=>te` <li key=${e.color+"-dt"} id=${e.color} style=${{backgroundColor:K[e.color][0]}} > <button class="desc" style=${{backgroundColor:e.color,color:K[e.color][0]}} onClick=${ne(e.color)} > <div> <b>${e.color}</b> ${!e.supported&&te`<div> ⚠️ Your browser doesn't support this color yet. </div>`} <div>${e.description}</div> </div> </button> <div class="contrasts" style=${{backgroundColor:e.color}}> ${K[e.color].map((t=>te` <button key=${t} style=${{backgroundColor:t}} title=${e.color+" contrasts with "+t} onClick=${ne(t)} ></button> `))} </div> </li> `))} <li key="me" class="me"> <button onClick=${()=>window.open("https://easrng.net")}> <b class="text">a project by</b> <img src="//badges.easrng.net/easrng.gif" alt="easrng" width="88" height="31" border="0" /> </button> </li> </ul> `}} />`,document.body);var oe=Object.freeze({__proto__:null});export{oe as uwu};</script>
+  </body>
+</html>
